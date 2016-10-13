@@ -23,18 +23,20 @@ build-job:
     paths:
       - bin/
       - obj/
+      - project.lock.json
 
 unittest-job:
   stage: test
   dependencies:
     - build-job
   script:
-    - dotnet test
+    - dotnet test test/Service.Tests
       #- echo "TotalInstructionCoverage:" `cat target/site/jacoco/jacoco.xml | grep -E '<counter type="INSTRUCTION"[^>]*/>' -o | tail -n 1 | sed -E 's@<counter type="INSTRUCTION"[ ]+missed="([0-9]+)"[ ]+covered="([0-9]+)"[ ]*/>@scale=2;100*(\2)/(\1+\2)@' | bc`
   artifacts:
     paths:
       - bin/
       - obj/
+      - project.lock.json
 
 #integrationtest-job:
 #  stage: test
@@ -47,6 +49,7 @@ unittest-job:
 #    paths:
 #      - bin/
 #      - obj/
+#      - project.lock.json
 
 deploy-job:
   stage: deploy
