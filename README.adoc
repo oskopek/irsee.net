@@ -1,0 +1,148 @@
+= mff-csharp-project
+
+image:https://gitlab.com/oskopek/mff-csharp-project/badges/master/build.svg["GitLab Build Status", link="https://gitlab.com/oskopek/mff-csharp-project/commits/master"]
+image:https://gitlab.com/oskopek/mff-csharp-project/badges/master/coverage.svg["GitLab Coverage Report", link="https://gitlab.com/oskopek/mff-csharp-project/commits/master"]
+//image:https://www.openhub.net/p/mff-csharp-project/widgets/project_thin_badge.gif["Ohloh widget", link="https://www.openhub.net/p/mff-csharp-project"]
+
+Planning and verifying tool for all the requirements of your studies (for European-style university school systems).
+
+=== Screenshot
+image:./docs/img/screenshot.png["mff-csharp-project screenshot", scaledwidth="20%"]
+
+=== Getting help
+
+*For users looking for help*: a manual describing all possible features of mff-csharp-project is available in the app itself:
+in the upper menu bar item *Help -> Help*.
+
+Post any development questions or comments you may have on Stack Overflow and/or don't hesitate to
+https://gitlab.com/oskopek/mff-csharp-project/issues[open an issue].
+
+=== Running mff-csharp-project releases
+
+* Download a release from https://gitlab.com/oskopek/mff-csharp-project/tags[]
+* To directly run mff-csharp-project, download the *executable JAR file*: `mff-csharp-project-VERSION-jar-with-dependencies.jar`
+* If you want to run a release, just try: `java -jar mff-csharp-project-VERSION-jar-with-dependencies.jar`
+
+=== Building & running mff-csharp-project
+
+* See the section (further down) on How-to setup your *build environment* first.
+* *Recommended*: `mvn clean install -DskipTests`
+* To run *unit tests*: `mvn clean install`
+* To run *integration tests*: `mvn clean install -Pit`
+* To *clean*, run: `mvn clean`
+* *Run mff-csharp-project*:
+** If you followed the build environment setup and want to run your version of mff-csharp-project,
+run `mvn exec:java` from the main project directory.
+** If you want to run a translated version of mff-csharp-project, set your system locale accordingly and restart mff-csharp-project.
+If you want to try out a translated version (on Linux), try: `LC_ALL="LOCALE" java -jar mff-csharp-project.jar`, where
+`LOCALE` is any locale available on your system (run `locale -a` to view all available).
+
+mff-csharp-project uses http://semver.org/[semantic versioning].
+
+=== Setup your build environment
+
+==== Linux & Mac
+
+. *Install Git*
+** Fedora: `sudo dnf install git`
+** Ubuntu: `sudo apt-get install git`
+
+. *Install Java8 JDK* -- link:http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK Downloads] -- Select: Java Platform (JDK)
+** *NOTE*: You need `jdk-8u40` or newer (JavaFX 8 dependency).
+
+. *Install Maven* -- preferably the latest version you can.
+Usually, your distribution's package management repository is enough:
+** Fedora: `sudo dnf install mvn`
+** Ubuntu: `sudo apt-get install maven`
+
+. *Fork the repository* -- Create a fork of the link:https://gitlab.com/oskopek/mff-csharp-project/[oskopek/mff-csharp-project repository]
+(right upper corner) on gitlab, usually the fork will be called: `yourusername/mff-csharp-project`.
+
+. *Clone the your fork* -- run `git clone https://gitlab.com/yourusername/mff-csharp-project.git`
+ (or, preferably, use SSH: `git clone git@gitlab.com:yourusername/mff-csharp-project.git`)
+
+. *Run the build* (see the Building section)
+
+==== Windows
+
+. *Install Java8 JDK* -- link:http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK Downloads] -- Select: Java Platform (JDK)
+
+. *Install Maven* -- (preferably the latest version you can).
+See: http://maven.apache.org/guides/getting-started/windows-prerequisites.html[Maven on Windows]
+ and http://maven.apache.org/download.cgi[Maven Downloads].
+
+. Download and install gitlab for Windows at http://windows.gitlab.com/[]. If you encounter any problems,
+see the http://windows.gitlab.com/help.html[gitlab for Windows FAQ].
+
+. Find the `oskopek/mff-csharp-project` https://gitlab.com/oskopek/mff-csharp-project[repository] on gitlab.
+
+. Create a fork of the repository (right upper corner), usually the fork will be called `yourusername/mff-csharp-project`.
+
+. *Run the build* (see the Building section)
+
+. The following workflow may be useful for you, if you're not familiar with Git/gitlab for Windows:
+
+.. In the upper left window, you can view all uncommitted changes.
+Write the name and description of your changes and click the *check* button.
+
+.. Once in a while, be sure to *sync* to send all commits to your gitlab fork.
+
+.. After testing your changes, submit a pull request to `oskopek/mff-csharp-project` through https://gitlab.com/oskopek/mff-csharp-project/compare[gitlab].
+... Click on compare across forks.
+... Set the following:
+**** base fork: `oskopek/mff-csharp-project`
+**** base: `master`
+**** head fork: `yourusername/mff-csharp-project`
+**** compare: `branchname`
+
+.. Click on *Click to create a pull request for this comparison*.
+
+.. Our Travis continuous integration server will test the merge of your pull request.
+You can view the results in the thread of the pull request.
+
+.. Congratulations! Your pull request will get reviewed and probably be merged in.
+
+=== Submitting an Issue
+
+We use the https://gitlab.com/oskopek/mff-csharp-project/issues[gitlab issue tracker] to track bugs and features. Before
+submitting a bug report or feature request, check to make sure it hasn't
+already been submitted. When submitting a bug report, please include a https://gist.gitlab.com/[Gist]
+that includes a stack trace and any details that may be necessary to reproduce
+the bug, including your Java version and operating system.
+
+=== Contributing
+
+*Everyone* is encouraged to help improve this project.
+
+Here are some ways *you* can contribute:
+
+* by using alpha, beta, and pre-release versions
+* by reporting bugs
+* by suggesting new features
+* by implementing link:./docs/goals.adoc[planned features]
+* by translating to a new language
+* by link:./docs/howto-write-documentation.adoc[writing or editing documentation]
+* by writing specifications
+* by writing code (*no patch is too small*: fix typos, add comments, clean up inconsistent whitespace)
+* by refactoring code
+* by closing https://gitlab.com/oskopek/mff-csharp-project/issues[issues]
+* by reviewing patches
+
+=== Submitting a Pull Request
+. http://help.gitlab.com/fork-a-repo/[Fork the repository]
+. http://learn.gitlab.com/p/branching.html[Create a topic branch]
+. Optional: To ease the process of contributing code back into mff-csharp-project,
+please set-up https://gitlab.com/oskopek/ide-config[IDE coding templates] first
+. Implement your feature or bug fix
+. If applicable, add tests and documentation for your feature or bug fix
+(see link:./docs/howto-write-documentation.adoc[How-to write documentation])
+. Run `mvn clean install -Pit`
+. If the tests fail, return to step 3 and 4
+. Add, commit, and push your changes
+. http://help.gitlab.com/send-pull-requests/[Submit a pull request]
+
+=== Data format
+
+For all input and output format, we use JSON.
+Currently, the input/output format depends directly on the model, and may be subject to future changes.
+
