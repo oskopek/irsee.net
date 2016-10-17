@@ -18,7 +18,7 @@ build-job:
   stage: build
   script:
     - dotnet restore
-    - dotnet build
+    - bash build-all.sh
   artifacts:
     paths:
       - bin/
@@ -30,7 +30,7 @@ unittest-job:
   dependencies:
     - build-job
   script:
-    - dotnet test test/Service.Tests
+    - bash test-all.sh
       #- echo "TotalInstructionCoverage:" `cat target/site/jacoco/jacoco.xml | grep -E '<counter type="INSTRUCTION"[^>]*/>' -o | tail -n 1 | sed -E 's@<counter type="INSTRUCTION"[ ]+missed="([0-9]+)"[ ]+covered="([0-9]+)"[ ]*/>@scale=2;100*(\2)/(\1+\2)@' | bc`
   artifacts:
     paths:
