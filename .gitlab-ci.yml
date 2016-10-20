@@ -18,25 +18,21 @@ build-job:
   stage: build
   script:
     - dotnet restore
-    - bash build-all.sh
+    - . ./build-all.sh
   artifacts:
     paths:
-      - bin/
-      - obj/
-      - project.lock.json
+      - . ./get-all-artifacts.sh
 
 unittest-job:
   stage: test
   dependencies:
     - build-job
   script:
-    - bash test-all.sh
+    - . ./test-all.sh
       #- echo "TotalInstructionCoverage:" `cat target/site/jacoco/jacoco.xml | grep -E '<counter type="INSTRUCTION"[^>]*/>' -o | tail -n 1 | sed -E 's@<counter type="INSTRUCTION"[ ]+missed="([0-9]+)"[ ]+covered="([0-9]+)"[ ]*/>@scale=2;100*(\2)/(\1+\2)@' | bc`
   artifacts:
     paths:
-      - bin/
-      - obj/
-      - project.lock.json
+      - . ./get-all-artifacts.sh
 
 #integrationtest-job:
 #  stage: test
@@ -47,15 +43,13 @@ unittest-job:
 #    - echo "TotalInstructionCoverage:" `cat target/site/jacoco-it/jacoco.xml | grep -E '<counter type="INSTRUCTION"[^>]*/>' -o | tail -n 1 | sed -E 's@<counter type="INSTRUCTION"[ ]+missed="([0-9]+)"[ ]+covered="([0-9]+)"[ ]*/>@scale=2;100*(\2)/(\1+\2)@' | bc`
 #  artifacts:
 #    paths:
-#      - bin/
-#      - obj/
-#      - project.lock.json
+#      - . ./get-all-artifacts.sh
 
 deploy-job:
   stage: deploy
   script:
-    - dotnet publish
+    - . ./publish-all.sh
   artifacts:
     paths:
-      - "bin/Debug/*.nupkg"
-      - "bin/Release/*.nupkg"
+      - find . -name '*.nupkg' -type f
+
