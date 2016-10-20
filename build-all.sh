@@ -1,5 +1,12 @@
 #!/bin/bash
 
-for dir in `find . -name 'project.lock.json' | xargs dirname`; do
+projectLocks="`find . -name 'project.lock.json'`"
+
+if [ -z "$projectLocks" ]; then
+    echo "Cannot find project lock files. Probably need to run 'dotnet restore' first."
+    exit 1
+fi
+
+for dir in `echo "$projectLocks" | xargs realpath | xargs dirname`; do
     dotnet build "$dir" || return 1
 done
