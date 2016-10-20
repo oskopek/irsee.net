@@ -21,7 +21,9 @@ build-job:
     - . ./build-all.sh
   artifacts:
     paths:
-      - `. ./get-all-artifacts.sh`
+      - "./*/*/bin"
+      - "./*/*/obj"
+      - "./*/*/project.lock.json"
 
 unittest-job:
   stage: test
@@ -32,7 +34,9 @@ unittest-job:
       #- echo "TotalInstructionCoverage:" `cat target/site/jacoco/jacoco.xml | grep -E '<counter type="INSTRUCTION"[^>]*/>' -o | tail -n 1 | sed -E 's@<counter type="INSTRUCTION"[ ]+missed="([0-9]+)"[ ]+covered="([0-9]+)"[ ]*/>@scale=2;100*(\2)/(\1+\2)@' | bc`
   artifacts:
     paths:
-      - `. ./get-all-artifacts.sh`
+      - "./*/*/bin"
+      - "./*/*/obj"
+      - "./*/*/project.lock.json"
 
 #integrationtest-job:
 #  stage: test
@@ -43,7 +47,9 @@ unittest-job:
 #    - echo "TotalInstructionCoverage:" `cat target/site/jacoco-it/jacoco.xml | grep -E '<counter type="INSTRUCTION"[^>]*/>' -o | tail -n 1 | sed -E 's@<counter type="INSTRUCTION"[ ]+missed="([0-9]+)"[ ]+covered="([0-9]+)"[ ]*/>@scale=2;100*(\2)/(\1+\2)@' | bc`
 #  artifacts:
 #    paths:
-#      - `. ./get-all-artifacts.sh`
+#      - "./*/*/bin"
+#      - "./*/*/obj"
+#      - "./*/*/project.lock.json"
 
 deploy-job:
   stage: deploy
@@ -51,5 +57,5 @@ deploy-job:
     - . ./publish-all.sh
   artifacts:
     paths:
-      - `find . -name '*.nupkg' -type f`
+       - "./*/*/bin/*/*.nupkg"
 
