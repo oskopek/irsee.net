@@ -1,12 +1,12 @@
 image: microsoft/dotnet:latest
 
-variables:
-  BUILD_DIR: "$(realpath $(pwd))"
-  NUGET_PACKAGES: "$BUILD_DIR/.nuget"
+before_script:
+  - export BUILD_DIR="$(realpath $(pwd))"
+  - export NUGET_PACKAGES="$BUILD_DIR/.nuget"
 
 cache:
   paths:
-    - "$NUGET_PACKAGES"
+    - "./.nuget"
   # keep cache across branch
   key: "$CI_BUILD_REF_NAME"
 
@@ -19,6 +19,8 @@ build-job:
   stage: build
   script:
     - dotnet restore
+    - echo $NUGET_PACKAGES
+    - du -scm *
     - . ./build-all.sh
   artifacts:
     paths:
