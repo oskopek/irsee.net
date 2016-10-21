@@ -8,6 +8,8 @@ if [ -z "$projectLocks" ]; then
 fi
 
 for dir in `echo "$projectLocks" | xargs realpath | xargs dirname`; do
-    dotnet publish "$dir"
+    dotnet publish "$dir" 2>&1
     dotnet pack "$dir" || return 1
 done
+#return 0
+
