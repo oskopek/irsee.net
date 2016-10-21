@@ -35,7 +35,6 @@ unittest-job:
   script:
     - dotnet restore
     - . ./test-all.sh
-      #- echo "TotalInstructionCoverage:" `cat target/site/jacoco/jacoco.xml | grep -E '<counter type="INSTRUCTION"[^>]*/>' -o | tail -n 1 | sed -E 's@<counter type="INSTRUCTION"[ ]+missed="([0-9]+)"[ ]+covered="([0-9]+)"[ ]*/>@scale=2;100*(\2)/(\1+\2)@' | bc`
   artifacts:
     paths:
       - "./*/*/bin"
@@ -48,8 +47,7 @@ unittest-job:
 #    - build-job
 #  script:
 #    - dotnet restore
-#    - dotnet test
-#    - echo "TotalInstructionCoverage:" `cat target/site/jacoco-it/jacoco.xml | grep -E '<counter type="INSTRUCTION"[^>]*/>' -o | tail -n 1 | sed -E 's@<counter type="INSTRUCTION"[ ]+missed="([0-9]+)"[ ]+covered="([0-9]+)"[ ]*/>@scale=2;100*(\2)/(\1+\2)@' | bc`
+#    - dotnet test --integration
 #  artifacts:
 #    paths:
 #      - "./*/*/bin"

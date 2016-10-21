@@ -1,8 +1,7 @@
 = mff-csharp-project
 
 image:https://gitlab.com/oskopek/mff-csharp-project/badges/master/build.svg["GitLab Build Status", link="https://gitlab.com/oskopek/mff-csharp-project/commits/master"]
-image:https://gitlab.com/oskopek/mff-csharp-project/badges/master/coverage.svg["GitLab Coverage Report", link="https://gitlab.com/oskopek/mff-csharp-project/commits/master"]
-//image:https://www.openhub.net/p/mff-csharp-project/widgets/project_thin_badge.gif["Ohloh widget", link="https://www.openhub.net/p/mff-csharp-project"]
+image:https://www.openhub.net/p/mff-csharp-project/widgets/project_thin_badge.gif["Ohloh widget", link="https://www.openhub.net/p/mff-csharp-project"]
 
 Planning and verifying tool for all the requirements of your studies (for European-style university school systems).
 
