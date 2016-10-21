@@ -19,8 +19,6 @@ build-job:
   stage: build
   script:
     - dotnet restore
-    - echo $NUGET_PACKAGES
-    - du -scm *
     - . ./build-all.sh
   artifacts:
     paths:
