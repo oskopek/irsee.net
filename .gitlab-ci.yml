@@ -1,7 +1,7 @@
 image: microsoft/dotnet:latest
 
 variables:
-  BUILD_DIR: "realpath `pwd`"
+  BUILD_DIR: "$(realpath $(pwd))"
   NUGET_PACKAGES: "$BUILD_DIR/.nuget"
 
 cache:
