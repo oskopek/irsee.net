@@ -1,14 +1,14 @@
 image: microsoft/dotnet:latest
 
+variables:
+  BUILD_DIR: "realpath `pwd`"
+  NUGET_PACKAGES: "$BUILD_DIR/.nuget"
+
 cache:
   paths:
-    - "./.nuget"
+    - "$NUGET_PACKAGES"
   # keep cache across branch
   key: "$CI_BUILD_REF_NAME"
-
-before_script:
-  - export BUILD_DIR="`pwd`"
-  - export DOTNET_PARAMS="--packages $BUILD_DIR/.nuget"
 
 stages:
   - build
@@ -18,7 +18,7 @@ stages:
 build-job:
   stage: build
   script:
-    - eval "dotnet restore $DOTNET_PARAMS"
+    - dotnet restore
     - . ./build-all.sh
   artifacts:
     paths:
@@ -31,7 +31,7 @@ unittest-job:
   dependencies:
     - build-job
   script:
-    - eval "dotnet restore $DOTNET_PARAMS"
+    - dotnet restore
     - . ./test-all.sh
       #- echo "TotalInstructionCoverage:" `cat target/site/jacoco/jacoco.xml | grep -E '<counter type="INSTRUCTION"[^>]*/>' -o | tail -n 1 | sed -E 's@<counter type="INSTRUCTION"[ ]+missed="([0-9]+)"[ ]+covered="([0-9]+)"[ ]*/>@scale=2;100*(\2)/(\1+\2)@' | bc`
   artifacts:
@@ -45,7 +45,7 @@ unittest-job:
 #  dependencies:
 #    - build-job
 #  script:
-#    - eval "dotnet restore $DOTNET_PARAMS"
+#    - dotnet restore
 #    - dotnet test
 #    - echo "TotalInstructionCoverage:" `cat target/site/jacoco-it/jacoco.xml | grep -E '<counter type="INSTRUCTION"[^>]*/>' -o | tail -n 1 | sed -E 's@<counter type="INSTRUCTION"[ ]+missed="([0-9]+)"[ ]+covered="([0-9]+)"[ ]*/>@scale=2;100*(\2)/(\1+\2)@' | bc`
 #  artifacts:
@@ -57,7 +57,7 @@ unittest-job:
 deploy-job:
   stage: deploy
   script:
-    - eval "dotnet restore $DOTNET_PARAMS"
+    - dotnet restore
     - . ./publish-all.sh
   artifacts:
     paths:
