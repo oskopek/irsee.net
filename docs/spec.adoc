@@ -1,0 +1,14 @@
+= , zápočtový program C# 2016/17
+Ondrej Škopek <oskopek@matfyz.cz>
+
+== Stručne
+
+
+
+== Podrobne
+
+
+
+== Bonus
+
+* Distribuovane trenovanie na viacerych PC
