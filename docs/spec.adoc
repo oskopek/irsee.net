@@ -1,14 +1,38 @@
-= , zápočtový program C# 2016/17
+= NeuralNetwork.NET, zápočtový program C# 2016/17
 Ondrej Škopek <oskopek@matfyz.cz>
 
 == Stručne
 
+NeuralNetwork.NET je jednoduchý distribuovaný framework na trénovanie a vyhodnocovanie
+neurónových sietí. Projekt má za ciele:
 
+* vyskúšať si teóriu neurónových sieti v praxi
+* vyskúšať si napísať jednoduchý distribuovaný systém
 
 == Podrobne
 
+Program predstavuje framework pre trénovanie a vyhodnocovanie
+modelov založených na neurónových sietiach. Základné vlastnosti:
 
+* Trénovanie feedforward neurónových sietí pomocou backpropagation a stochastic gradient descent.
+** V základnej verzií sa framework nezaoberá predspracovaním dát -- ako vstupné data akcepute hodnôt typu `float`. Výstupná hodnota záleží na aktivačnej funkcií výstupnej vrstvy, prípadne následnému spracovaniu.
+* Možnosť trénovania jednej siete http://martin.zinkevich.org/publications/nips2010.pdf[paralelne]
+-- nie len na viacerých jadrách jedného počítača, ale aj na viac jadrách viacerých počítačov.
+* V základnej verzií obsahuje príklad trénovania klasifikačného modelu na známom datasete http://yann.lecun.com/exdb/mnist/[MNIST].
+* De/serializácia natrénovaných modelov.
 
 == Bonus
 
-* Distribuovane trenovanie na viacerych PC
+* Vačšia nastaviteľnosť siete:
+** rôzne aktivačné funkcie
+** regularizácia
+** rôzne loss funkcie
+** rôzne optimalizátory
+** dropout
+** rôzne inicializátory váh
+** ...
+* Podpora pre predspracovanie dát
+** One-Hot vektory pre kategorické dáta
+** Normalizácia
+** ...
+* Ďalšie príklady
