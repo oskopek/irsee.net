@@ -33,7 +33,7 @@ Don't hesitate to https://gitlab.com/oskopek/neuralnetworknet/issues[open an iss
 === Building & running NeuralNetwork.NET
 
 * See the section (further down) on How-to setup your *build environment* first.
-* *Recommended*: `./clean.sh; ./build-all.sh; dotnet run`
+* *Recommended*: `./clean.sh; dotnet restore; ./build-all.sh; dotnet run`
 * To run *unit tests*: `./test-all.sh`
 //* To run *integration tests*: `./test-all-integration.sh`
 * To *clean*, run: `./clean.sh`
@@ -53,11 +53,6 @@ NeuralNetwork.NET uses http://semver.org/[semantic versioning].
 
 . *Install .NET Core >= 1.0.0* -- link:http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK Downloads] -- Select: Java Platform (JDK)
 ** *NOTE*: You need `jdk-8u40` or newer (JavaFX 8 dependency).
-
-. *Install Maven* -- preferably the latest version you can.
-Usually, your distribution's package management repository is enough:
-** Fedora: `sudo dnf install mvn`
-** Ubuntu: `sudo apt-get install maven`
 
 . *Fork the repository* -- Create a fork of the link:https://gitlab.com/oskopek/neuralnetworknet/[oskopek/neuralnetworknet repository]
 (right upper corner) on gitlab, usually the fork will be called: `yourusername/neuralnetworknet`.
@@ -130,7 +125,7 @@ please set-up https://gitlab.com/oskopek/ide-config[IDE coding templates] first
 . Implement your feature or bug fix
 . If applicable, add tests and documentation for your feature or bug fix
 (see link:./docs/howto-write-documentation.adoc[How-to write documentation])
-. Run `./clean.sh; ./build-all.sh; ./test-all.sh`
+. Run `./clean.sh; dotnet restore; ./build-all.sh; ./test-all.sh`
 . If the tests fail, return to step 3 and 4
 . Add, commit, and push your changes
 . https://www.youtube.com/watch?v=raXvuwet78M[Submit a merge request]
