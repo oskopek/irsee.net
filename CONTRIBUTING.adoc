@@ -1,0 +1,4 @@
+= Contribution guide
+
+Contributions are unfortunately not accepted at the moment,
+as this is a classroom project.
