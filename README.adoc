@@ -1,7 +1,7 @@
 = irsee.net
 
 image:https://gitlab.com/oskopek/irsee.net/badges/master/build.svg["GitLab Build Status", link="https://gitlab.com/oskopek/irsee.net/commits/master"]
-image:https://www.openhub.net/p/irsee.net/widgets/project_thin_badge.gif["Ohloh widget", link="https://www.openhub.net/p/irsee.net"]
+image:https://www.openhub.net/p/irseenet/widgets/project_thin_badge?format=gif["Ohloh widget", link="https://www.openhub.net/p/irseenet"]
 
 irsee.net is a simple IRC Client library, written in C#. It also contains a sample chatbot implemented using the library.
 
