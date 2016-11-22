@@ -1,47 +1,47 @@
-= NeuralNetwork.NET
+= irsee.net
 
-image:https://gitlab.com/oskopek/neuralnetworknet/badges/master/build.svg["GitLab Build Status", link="https://gitlab.com/oskopek/neuralnetworknet/commits/master"]
-image:https://www.openhub.net/p/neuralnetworknet/widgets/project_thin_badge.gif["Ohloh widget", link="https://www.openhub.net/p/neuralnetworknet"]
+image:https://gitlab.com/oskopek/irsee.net/badges/master/build.svg["GitLab Build Status", link="https://gitlab.com/oskopek/irsee.net/commits/master"]
+image:https://www.openhub.net/p/irsee.net/widgets/project_thin_badge.gif["Ohloh widget", link="https://www.openhub.net/p/irsee.net"]
 
-NeuralNetwork.NET is a simple distributed framework for training and evaluating neural network modules written in C#.
+irsee.net is a simple IRC Client library, written in C#. It also contains a sample chatbot implemented using the library.
 
 === Screenshot
-image:./docs/img/screenshot.png["NeuralNetwork.NET screenshot", scaledwidth="20%"]
+image:./docs/img/screenshot.png["irsee.net screenshot", scaledwidth="20%"]
 
 === Getting help
 
-*For users looking for help*: a manual describing all possible features of NeuralNetwork.NET is available in the app itself:
+*For users looking for help*: a manual describing all possible features of irsee.net is available in the app itself:
 link:./docs/user/index.adoc[the docs folder].
 
-Post any development questions or comments you may have on Stack Overflow and tag it with `[neuralnetworknet]`.
-Don't hesitate to https://gitlab.com/oskopek/neuralnetworknet/issues[open an issue].
+Post any development questions or comments you may have on Stack Overflow and tag it with `[irsee.net]`.
+Don't hesitate to https://gitlab.com/oskopek/irsee.net/issues[open an issue].
 
-=== Running NeuralNetwork.NET releases
+=== Running irsee.net releases
 
-* Download a release from https://gitlab.com/oskopek/neuralnetworknet/tags[]
+* Download a release from https://gitlab.com/oskopek/irsee.net/tags[]
 
 ==== Linux with `dotnet`
 
-* Download the *source archive*: `neuralnetworknet-VERSION-src.zip`
-* Extract it using your favourite archive tool: `unzip neuralnetworknet-VERSION-src.zip`
+* Download the *source archive*: `irsee.net-VERSION-src.zip`
+* Extract it using your favourite archive tool: `unzip irsee.net-VERSION-src.zip`
 * `cd` into the extracted directory and execute `dotnet run`.
 
 ==== Windows with `.NET Core`
 
 *TODO*
 
-=== Building & running NeuralNetwork.NET
+=== Building & running irsee.net
 
 * See the section (further down) on How-to setup your *build environment* first.
 * *Recommended*: `./clean.sh; dotnet restore; ./build-all.sh; dotnet run`
 * To run *unit tests*: `./test-all.sh`
 //* To run *integration tests*: `./test-all-integration.sh`
 * To *clean*, run: `./clean.sh`
-* *Run NeuralNetwork.NET*:
-** If you followed the build environment setup and want to run your version of NeuralNetwork.NET,
+* *Run irsee.net*:
+** If you followed the build environment setup and want to run your version of irsee.net,
 run `dotnet run` from the main project directory.
 
-NeuralNetwork.NET uses http://semver.org/[semantic versioning].
+irsee.net uses http://semver.org/[semantic versioning].
 
 === Setup your build environment
 
@@ -54,11 +54,11 @@ NeuralNetwork.NET uses http://semver.org/[semantic versioning].
 . *Install .NET Core >= 1.0.0* -- link:http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK Downloads] -- Select: Java Platform (JDK)
 ** *NOTE*: You need `jdk-8u40` or newer (JavaFX 8 dependency).
 
-. *Fork the repository* -- Create a fork of the link:https://gitlab.com/oskopek/neuralnetworknet/[oskopek/neuralnetworknet repository]
-(right upper corner) on gitlab, usually the fork will be called: `yourusername/neuralnetworknet`.
+. *Fork the repository* -- Create a fork of the link:https://gitlab.com/oskopek/irsee.net/[oskopek/irsee.net repository]
+(right upper corner) on gitlab, usually the fork will be called: `yourusername/irsee.net`.
 
-. *Clone the your fork* -- run `git clone https://gitlab.com/yourusername/neuralnetworknet.git`
- (or, preferably, use SSH: `git clone git@gitlab.com:yourusername/neuralnetworknet.git`)
+. *Clone the your fork* -- run `git clone https://gitlab.com/yourusername/irsee.net.git`
+ (or, preferably, use SSH: `git clone git@gitlab.com:yourusername/irsee.net.git`)
 
 . *Run the build* (see the Building section)
 
@@ -69,18 +69,18 @@ NeuralNetwork.NET uses http://semver.org/[semantic versioning].
 
 . *TODO* Install Git
 
-. Find the `oskopek/neuralnetworknet` https://gitlab.com/oskopek/neuralnetworknet[repository] on gitlab.
+. Find the `oskopek/irsee.net` https://gitlab.com/oskopek/irsee.net[repository] on gitlab.
 
-. Create a fork of the repository (right under the project name), usually the fork will be called `yourusername/neuralnetworknet`.
+. Create a fork of the repository (right under the project name), usually the fork will be called `yourusername/irsee.net`.
 
 . *Run the build* (see the Building section)
 
-.. After testing your changes, submit a merge request to `oskopek/neuralnetworknet` through https://gitlab.com/oskopek/neuralnetworknet/merge_requests/new[gitlab].
+.. After testing your changes, submit a merge request to `oskopek/irsee.net` through https://gitlab.com/oskopek/irsee.net/merge_requests/new[gitlab].
 ... Click on compare across forks.
 ... Set the following:
-**** base fork: `oskopek/neuralnetworknet`
+**** base fork: `oskopek/irsee.net`
 **** base: `master`
-**** head fork: `yourusername/neuralnetworknet`
+**** head fork: `yourusername/irsee.net`
 **** compare: `branchname`
 
 .. Click on *Click to create a merge request for this comparison*.
@@ -92,7 +92,7 @@ You can view the results in the thread of the merge request.
 
 === Submitting an Issue
 
-We use the https://gitlab.com/oskopek/neuralnetworknet/issues[gitlab issue tracker] to track bugs and features. Before
+We use the https://gitlab.com/oskopek/irsee.net/issues[gitlab issue tracker] to track bugs and features. Before
 submitting a bug report or feature request, check to make sure it hasn't
 already been submitted. When submitting a bug report, please include a https://gitlab.com/dashboard/snippets[Gist]
 that includes a stack trace and any details that may be necessary to reproduce
@@ -113,14 +113,14 @@ Here are some ways *you* can contribute:
 * by writing specifications
 * by writing code (*no patch is too small*: fix typos, add comments, clean up inconsistent whitespace)
 * by refactoring code
-* by closing https://gitlab.com/oskopek/neuralnetworknet/issues[issues]
+* by closing https://gitlab.com/oskopek/irsee.net/issues[issues]
 * by reviewing patches
 
 === Submitting a Pull Request
 
 . http://help.gitlab.com/fork-a-repo/[Fork the repository]
 . http://learn.gitlab.com/p/branching.html[Create a topic branch]
-. Optional: To ease the process of contributing code back into NeuralNetwork.NET,
+. Optional: To ease the process of contributing code back into irsee.net,
 please set-up https://gitlab.com/oskopek/ide-config[IDE coding templates] first
 . Implement your feature or bug fix
 . If applicable, add tests and documentation for your feature or bug fix
