@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ConsoleApplication
+namespace Irsee.ChatBot
 {
-    public class Program
+    public class ChatBot
     {
         public static void Main(string[] args)
         {
