@@ -3,14 +3,14 @@ Ondrej Škopek <oskopek@matfyz.cz>
 
 == Popis
 
-irsee.net je jednoduchá knižnica pre IRC klientov v C#
+irsee.net je jednoduchá knižnica pre vývoj IRC klientov v C#
 (implementácia "rozumnej" podmnožiny klientskej časti
 https://tools.ietf.org/html/rfc1459[RFC 1459]).
-Ako proof-of-concept bude súčasťou projektu jednoduchý rozšíriteľný chat bot.
+Ako "proof of concept" bude súčasťou projektu jednoduchý rozšíriteľný chat bot.
 
 Projekt bude poskytovať:
 
-* pripojenie k štandardným IRC serverom
+* možnosť pripojenia k štandardným IRC serverom
 * rozumne jednoduché a intuitívne API pre príjmanie a posielanie správ,
 spravovanie kanálu a nastavenie vlastností pripojenia
 * API na "vyššej" úrovni pre vytváranie vlastných IRC chat botov a klientov
@@ -21,9 +21,8 @@ informácií o počasí ako príklad použitia knižnice
 
 * Pridanie funkcionality bežne dostupnej v modernejších verziach IRC (RFC2812,
 prípadne rôzne bežne implementované rozšírenia)
-* Pridanie funkcionality chat bota:
+* Pridanie funkcionality do chat bota HelpR:
 ** Vyhľadávanie v logoch
 ** Preview stránok pre všetky URL vyskytujúce sa v správach kanálu
 ** Jednoduchá konverzácia (na štýl Eliza)
-** GitHub/GitLab integrácia
 ** ...
