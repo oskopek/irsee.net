@@ -4,9 +4,9 @@ namespace Irsee.ChatBot
 {
     public class ChatBot
     {
-        public static void Main(string[] args)
+        public static string TestMethod()
         {
-            Console.WriteLine("Hello World!");
+            return "Test";
         }
     }
 }

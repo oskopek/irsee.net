@@ -2,19 +2,14 @@
   "name": "ChatBot",
   "version": "1.0.0-*",
   "buildOptions": {
-    "debugType": "portable",
-    "emitEntryPoint": true
+    "debugType": "portable"
   },
   "dependencies": {},
   "frameworks": {
-    "netcoreapp1.0": {
+    "netstandard1.6": {
       "dependencies": {
-        "Microsoft.NETCore.App": {
-          "type": "platform",
-          "version": "1.0.1"
-        }
-      },
-      "imports": "dnxcore50"
+        "NETStandard.Library": "1.6.0"
+      }
     }
   }
 }
