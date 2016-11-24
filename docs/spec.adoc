@@ -1,9 +1,9 @@
-= NeuralNetwork.NET, zápočtový program C# 2016/17
+= irsee.net, zápočtový program C# 2016/17
 Ondrej Škopek <oskopek@matfyz.cz>
 
 == Stručne
 
-NeuralNetwork.NET je jednoduchý distribuovaný framework na trénovanie a vyhodnocovanie
+irsee.net je jednoduchý distribuovaný framework na trénovanie a vyhodnocovanie
 neurónových sietí. Projekt má za ciele:
 
 * vyskúšať si teóriu neurónových sieti v praxi
