@@ -6,10 +6,9 @@ namespace Irsee.ChatBot
     public class ChatBotTest
     {
         [Fact]
-        public void Test_Main()
+        public void TestTest()
         {
-            ChatBot.Main(new string[0]);
-            Assert.True(true);
+            Assert.Equal("Test", ChatBot.TestMethod());
         }
     }
 }
