@@ -1,0 +1,130 @@
+= irsee.net, Documentation, C# 2016/17
+Ondrej Škopek <oskopek@matfyz.cz>
+
+== Requirements
+
+=== RFC requirements
+
+Several main requirements that irsee.net has to fulfill, stemming from
+https://tools.ietf.org/html/rfc1459[RFC1459]:
+
+* the correct command sequence for identification towards the server
+* optional use of server password
+* correct command syntax
+* keep-alive pong replies
+
+=== Other requirements
+
+* Server hostname, port, optional: SSL, optional: password
+* Nickname, alternative nickname, optional: NickServ password
+* Client hostname, Client host username
+
+=== Optional requirements
+
+* TLS support
+** http://ircv3.net/specs/extensions/tls-3.1.html
+* SASL (NickServ authentication during login) support
+** http://ircv3.net/specs/extensions/sasl-3.2.html
+* Publish as a NuGet package to https://www.nuget.org
+* echo-message for delivery confirmation
+** http://ircv3.net/specs/extensions/echo-message-3.2.html
+
+== Design
+
+The project is divided into 3 parts:
+
+* the client library
+* the generic chatbot library
+* an example chatbot called "HelpR"
+
+=== IRC Client Library (ICL)
+
+// TODO: UML diagram
+
+* Message listener API
+* Message send API
+* Pre-filled messages:
+** Change nickname
+** Register to services
+** List channel names
+** Join/part channel
+** ...
+
+=== IRC ChatBot Library (IBL)
+
+// TODO: UML diagram
+
+Features:
+
+* Message reaction API
+* Log search API
+* ...
+
+=== HelpR
+
+// TODO: UML diagram
+
+Features:
+
+* Weather information
+* Link previews
+* ...
+
+== IRC Client Library (ICL) -- Developer usage guide
+
+
+
+=== Compiling
+
+
+
+=== Running
+
+
+
+=== API
+
+The public API is documented using standard
+https://msdn.microsoft.com/en-us/library/b2s063f7.aspx[XML Documentation Comments].
+
+The generated API documentation is available at: TODO.
+
+
+== IRC ChatBot Library (IBL) -- Developer usage guide
+
+
+
+=== Compiling
+
+
+
+=== Running
+
+
+
+=== API
+
+The public API is documented using standard
+https://msdn.microsoft.com/en-us/library/b2s063f7.aspx[XML Documentation Comments].
+
+The generated API documentation is available at: TODO.
+
+
+== Helpr -- Developer usage guide
+
+
+
+=== Compiling
+
+
+
+=== Running
+
+
+
+=== API
+
+The public API is documented using standard
+https://msdn.microsoft.com/en-us/library/b2s063f7.aspx[XML Documentation Comments].
+
+The generated API documentation is available at: TODO.

@@ -1,38 +1,29 @@
 = irsee.net, zápočtový program C# 2016/17
 Ondrej Škopek <oskopek@matfyz.cz>
 
-== Stručne
+== Popis
 
-irsee.net je jednoduchý distribuovaný framework na trénovanie a vyhodnocovanie
-neurónových sietí. Projekt má za ciele:
+irsee.net je jednoduchá knižnica pre IRC klientov v C#
+(implementácia "rozumnej" podmnožiny klientskej časti
+https://tools.ietf.org/html/rfc1459[RFC 1459]).
+Ako proof-of-concept bude súčasťou projektu jednoduchý rozšíriteľný chat bot.
 
-* vyskúšať si teóriu neurónových sieti v praxi
-* vyskúšať si napísať jednoduchý distribuovaný systém
+Projekt bude poskytovať:
 
-== Podrobne
-
-Program predstavuje framework pre trénovanie a vyhodnocovanie
-modelov založených na neurónových sietiach. Základné vlastnosti:
-
-* Trénovanie feedforward neurónových sietí pomocou backpropagation a stochastic gradient descent.
-** V základnej verzií sa framework nezaoberá predspracovaním dát -- ako vstupné data akcepute hodnôt typu `float`. Výstupná hodnota záleží na aktivačnej funkcií výstupnej vrstvy, prípadne následnému spracovaniu.
-* Možnosť trénovania jednej siete http://martin.zinkevich.org/publications/nips2010.pdf[paralelne]
--- nie len na viacerých jadrách jedného počítača, ale aj na viac jadrách viacerých počítačov.
-* V základnej verzií obsahuje príklad trénovania klasifikačného modelu na známom datasete http://yann.lecun.com/exdb/mnist/[MNIST].
-* De/serializácia natrénovaných modelov.
+* pripojenie k štandardným IRC serverom
+* rozumne jednoduché a intuitívne API pre príjmanie a posielanie správ,
+spravovanie kanálu a nastavenie vlastností pripojenia
+* API na "vyššej" úrovni pre vytváranie vlastných IRC chat botov a klientov
+* jednoduchého bota "HelpR" na logovanie kanálu a poskytovanie
+informácií o počasí ako príklad použitia knižnice
 
 == Bonus
 
-* Vačšia nastaviteľnosť siete:
-** rôzne aktivačné funkcie
-** regularizácia
-** rôzne loss funkcie
-** rôzne optimalizátory
-** dropout
-** rôzne inicializátory váh
+* Pridanie funkcionality bežne dostupnej v modernejších verziach IRC (RFC2812,
+prípadne rôzne bežne implementované rozšírenia)
+* Pridanie funkcionality chat bota:
+** Vyhľadávanie v logoch
+** Preview stránok pre všetky URL vyskytujúce sa v správach kanálu
+** Jednoduchá konverzácia (na štýl Eliza)
+** GitHub/GitLab integrácia
 ** ...
-* Podpora pre predspracovanie dát
-** One-Hot vektory pre kategorické dáta
-** Normalizácia
-** ...
-* Ďalšie príklady

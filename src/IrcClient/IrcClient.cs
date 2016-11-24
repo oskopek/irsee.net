@@ -6,7 +6,7 @@ namespace Irsee.IrcClient
     {
         public static string TestMethod()
         {
-            return("Test");
+            return "Test";
         }
     }
 }
