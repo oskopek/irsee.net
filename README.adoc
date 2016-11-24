@@ -5,15 +5,14 @@ image:https://www.openhub.net/p/irseenet/widgets/project_thin_badge?format=gif["
 
 irsee.net is a simple IRC Client library, written in C#. It also contains a sample chatbot implemented using the library.
 
-=== Screenshot
-image:./docs/img/screenshot.png["irsee.net screenshot", scaledwidth="20%"]
+// === Screenshot
+// image:./docs/img/screenshot.png["irsee.net screenshot", scaledwidth="20%"]
 
 === Getting help
 
-*For users looking for help*: a manual describing all possible features of irsee.net is available in the app itself:
-link:./docs/user/index.adoc[the docs folder].
+*For users looking for help*: a manual describing all possible features of irsee.net is available in link:./docs/[the docs folder].
 
-Post any development questions or comments you may have on Stack Overflow and tag it with `[irsee.net]`.
+Post any development questions or comments you may have on Stack Overflow and tag it with `[irseenet]`.
 Don't hesitate to https://gitlab.com/oskopek/irsee.net/issues[open an issue].
 
 === Running irsee.net releases
@@ -22,9 +21,9 @@ Don't hesitate to https://gitlab.com/oskopek/irsee.net/issues[open an issue].
 
 ==== Linux with `dotnet`
 
-* Download the *source archive*: `irsee.net-VERSION-src.zip`
-* Extract it using your favourite archive tool: `unzip irsee.net-VERSION-src.zip`
-* `cd` into the extracted directory and execute `dotnet run`.
+* Download the *source archive*: `irsee.net-VERSION.zip`
+* Extract it using your favourite archive tool: `unzip irsee.net-VERSION.zip`
+* `cd` into the extracted directory and execute `./build-all.sh; dotnet run`.
 
 ==== Windows with `.NET Core`
 
@@ -34,8 +33,7 @@ Don't hesitate to https://gitlab.com/oskopek/irsee.net/issues[open an issue].
 
 * See the section (further down) on How-to setup your *build environment* first.
 * *Recommended*: `./clean.sh; dotnet restore; ./build-all.sh; dotnet run`
-* To run *unit tests*: `./test-all.sh`
-//* To run *integration tests*: `./test-all-integration.sh`
+* To run *tests*: `./test-all.sh`
 * To *clean*, run: `./clean.sh`
 * *Run irsee.net*:
 ** If you followed the build environment setup and want to run your version of irsee.net,
@@ -51,13 +49,12 @@ irsee.net uses http://semver.org/[semantic versioning].
 ** Fedora: `sudo dnf install git`
 ** Ubuntu: `sudo apt-get install git`
 
-. *Install .NET Core >= 1.0.0* -- link:http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK Downloads] -- Select: Java Platform (JDK)
-** *NOTE*: You need `jdk-8u40` or newer (JavaFX 8 dependency).
+. *Install .NET Core >= 1.0.0* -- TODO
 
 . *Fork the repository* -- Create a fork of the link:https://gitlab.com/oskopek/irsee.net/[oskopek/irsee.net repository]
 (right upper corner) on gitlab, usually the fork will be called: `yourusername/irsee.net`.
 
-. *Clone the your fork* -- run `git clone https://gitlab.com/yourusername/irsee.net.git`
+. *Clone your fork* -- run `git clone https://gitlab.com/yourusername/irsee.net.git`
  (or, preferably, use SSH: `git clone git@gitlab.com:yourusername/irsee.net.git`)
 
 . *Run the build* (see the Building section)
@@ -84,10 +81,7 @@ irsee.net uses http://semver.org/[semantic versioning].
 **** compare: `branchname`
 
 .. Click on *Click to create a merge request for this comparison*.
-
-.. Our GitLab continuous integration will test the merge of your merge request.
-You can view the results in the thread of the merge request.
-
+.. Our GitLab continuous integration will test your merge request. You can view the results in the thread of the merge request.
 .. Congratulations! Your merge request will get reviewed and probably be merged in.
 
 === Submitting an Issue
@@ -101,6 +95,7 @@ the bug, including your .NET Core version and operating system.
 === Contributing
 
 *Everyone* is encouraged to help improve this project.
+*FOR NOW, WE DO NOT ACCEPT CONTRIBUTIONS, AS THIS IS A CLASSROOM PROJECT.*
 
 Here are some ways *you* can contribute:
 
@@ -130,6 +125,3 @@ please set-up https://gitlab.com/oskopek/ide-config[IDE coding templates] first
 . Add, commit, and push your changes
 . https://www.youtube.com/watch?v=raXvuwet78M[Submit a merge request]
 
-=== Data format
-
-*TODO*
