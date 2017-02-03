@@ -10,5 +10,16 @@ namespace Irsee.IrcClient
         {
             Assert.Equal("Test", IrcClient.TestMethod());
         }
+
+        [Fact]
+        public void FreenodeConnection()
+        {
+        //Given
+        string freenodeServer = "chat.freenode.net";
+        //When
+        
+        //Then
+        Assert.
+        }
     }
 }
