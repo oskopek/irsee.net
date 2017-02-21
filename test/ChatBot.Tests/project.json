@@ -8,8 +8,9 @@
     "xunit": "2.1.0",
     "dotnet-test-xunit": "1.0.0-*",
     "ChatBot": {
-        "target": "project"
-    }
+      "target": "project"
+    },
+    "xunit.runner.console": "2.2.0"
   },
   "testRunner": "xunit",
   "frameworks": {
@@ -17,7 +18,7 @@
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
-          "version": "1.1.0"
+          "version": "1.0.1"
         }
       },
       "imports": [
