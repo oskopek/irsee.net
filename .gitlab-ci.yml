@@ -1,4 +1,4 @@
-image: microsoft/dotnet:1.1.0-sdk-projectjson
+image: microsoft/dotnet:1.0.1-sdk-projectjson
 
 before_script:
   - export BUILD_DIR="$(realpath $(pwd))"
