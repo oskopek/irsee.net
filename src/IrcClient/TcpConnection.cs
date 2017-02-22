@@ -32,7 +32,7 @@ namespace Irsee.IrcClient
 
         public void Dispose()
         {
-            client.Dispose();
+            client?.Dispose();
         }
 
         public void Disconnect()

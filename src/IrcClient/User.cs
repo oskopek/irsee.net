@@ -14,9 +14,9 @@ namespace Irsee.IrcClient
             this.Realname = realname;
         }
 
-        public string Nickname { get; private set; }
-        public string Realname { get; private set; }
-        public string Username { get; private set; }
+        public string Nickname { get; set; }
+        public string Realname { get; set; }
+        public string Username { get; set; }
 
     }   
 }

@@ -21,8 +21,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ChatBot.Tests", "test\ChatB
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Helpr.Tests", "test\Helpr.Tests\Helpr.Tests.xproj", "{F4D2EAF0-3F1D-4A20-AC0D-3AAF0028A5C7}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject1", "..\ModelingProject1\ModelingProject1.modelproj", "{876FF04B-96A9-4ADC-BB94-8FAD8933EB0A}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		irseenet.projitems*{305f0a74-6b15-45dc-abc9-6b666a24a68d}*SharedItemsImports = 13
@@ -56,10 +54,6 @@ Global
 		{F4D2EAF0-3F1D-4A20-AC0D-3AAF0028A5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4D2EAF0-3F1D-4A20-AC0D-3AAF0028A5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4D2EAF0-3F1D-4A20-AC0D-3AAF0028A5C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{876FF04B-96A9-4ADC-BB94-8FAD8933EB0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{876FF04B-96A9-4ADC-BB94-8FAD8933EB0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{876FF04B-96A9-4ADC-BB94-8FAD8933EB0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{876FF04B-96A9-4ADC-BB94-8FAD8933EB0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

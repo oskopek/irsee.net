@@ -1,35 +1,30 @@
 ﻿using System;
-using Irsee.IrcClient;
-using System.Threading;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using Xunit;
 
-namespace Irsee.Helpr
+namespace Irsee.IrcClient
 {
-    public class Helpr
+    public class RemoteServerTest
     {
-        public static void Main(string[] args)
+		[Fact]
+        public void FreenodeConnectionTest()
         {
-            List<String> rawMessages = new List<string>();
-            Console.WriteLine("Hello World!");
+            List<string> rawMessages = new List<string>();
             var freenodeConfiguration = new ServerConfiguration("leguin.freenode.net");
             var helpr = new User("helpr-bot", "HelpR", "HelpR");
             var freenode = new RemoteServer(helpr, freenodeConfiguration);
             freenode.IncomingRawMessageEvent += x => rawMessages.Add(x);
-            freenode.IncomingRawMessageEvent += x => Console.WriteLine(x);
             freenode.ConnectAsync().Wait();
-            Console.WriteLine("Connect finished");
             Thread.Sleep(1000);
             freenode.SendMessageAsync(new SimpleMessage($"PRIVMSG {helpr.Nickname} :Test Message 123")).Wait();
-            Console.WriteLine("Send message finished");
             for (int i = 0; i < 20; i++)
             {
-                Console.WriteLine("Sleep...");
                 Thread.Sleep(1000);
             }
             freenode.Disconnect();
-            Console.WriteLine("Disconnected");
-            Console.WriteLine(rawMessages[rawMessages.Count - 1].Contains("Test Message 123"));
-            Console.ReadLine();
+            Assert.Contains("Test Message 123", rawMessages[rawMessages.Count - 1]);
         }
     }
 }
