@@ -8,6 +8,7 @@ namespace Irsee.ChatBot
         [Fact]
         public void TestTest()
         {
+            new ChatBot();
             Assert.Equal("Test", ChatBot.TestMethod());
         }
     }

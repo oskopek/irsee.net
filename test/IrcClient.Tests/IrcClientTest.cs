@@ -8,7 +8,19 @@ namespace Irsee.IrcClient
         [Fact]
         public void TestTest()
         {
-            Assert.Equal("Test", IrcClient.TestMethod());
+            new IrcClient().Connect();
+            Assert.Equal("Test", "Test");
+        }
+
+        [Fact]
+        public void FreenodeConnection()
+        {
+            //Given
+            string freenodeServer = "chat.freenode.net";
+            //When
+
+            //Then
+            Assert.True(true);
         }
     }
 }

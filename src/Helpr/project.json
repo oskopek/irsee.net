@@ -5,16 +5,20 @@
     "debugType": "portable",
     "emitEntryPoint": true
   },
-  "dependencies": {},
+  "dependencies": {
+    "ChatBot": {
+      "target": "project"
+    }
+  },
   "frameworks": {
     "netcoreapp1.0": {
+      "imports": [ "dnxcore50", "portable-net452" ],
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
           "version": "1.0.1"
         }
-      },
-      "imports": "dnxcore50"
+      }
     }
   }
 }
