@@ -9,13 +9,13 @@ namespace Irsee.Helpr
     {
         public static void Main(string[] args)
         {
-            List<String> rawMessages = new List<string>();
             Console.WriteLine("Hello World!");
             var helpr = new User("helpr-bot", "HelpR", "HelpR");
             var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net");
             var freenode = new RemoteServer(freenodeConfiguration);
-            freenode.IncomingRawMessageEvent += x => rawMessages.Add(x);
-            freenode.IncomingRawMessageEvent += x => Console.WriteLine(x);
+            var client = new IrcClient.IrcClient(freenode);
+            freenode.IncomingMessageEvent += x => Console.WriteLine(x.RawMessage);
+            client.Dispatcher.AddHandler(Command.PRIVMSG, (_, _2) => Console.WriteLine("PRIVMSG obtained!"));
             freenode.ConnectAsync().Wait();
             Console.WriteLine("Connect finished");
             Thread.Sleep(1000);
@@ -28,7 +28,6 @@ namespace Irsee.Helpr
             }
             freenode.Disconnect();
             Console.WriteLine("Disconnected");
-            Console.WriteLine(rawMessages[rawMessages.Count - 1].Contains("Test Message 123"));
             Console.ReadLine();
         }
     }

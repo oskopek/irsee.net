@@ -15,7 +15,7 @@ namespace Irsee.IrcClient
             var helpr = new User("helpr-bot", username: "HelpR", realname: "HelpR");
             var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net");
             var freenode = new RemoteServer(freenodeConfiguration);
-            freenode.IncomingRawMessageEvent += x => rawMessages.Add(x);
+            freenode.IncomingMessageEvent += x => rawMessages.Add(x.RawMessage);
             freenode.ConnectAsync().Wait();
             Thread.Sleep(1000);
             freenode.SendMessageAsync(new SimpleMessage($"PRIVMSG {helpr.Nickname} :Test Message 123")).Wait();

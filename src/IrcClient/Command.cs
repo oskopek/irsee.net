@@ -184,7 +184,8 @@ namespace Irsee.IrcClient
             string str;
             if (!reverse.TryGetValue((int)command, out str))
             {
-                throw new ArgumentException($"Unknown command {command}");
+                Console.Error.WriteLine($"Unknown command {command}.");
+                return ((int)command) + "";
             }
             if (!command.IsCommand())
             {

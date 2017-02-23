@@ -12,15 +12,15 @@ namespace Irsee.IrcClient
 
         private IrcConnection Connection { get; }
 
-        public delegate void RawMessageListener(string rawMessage);
+        public delegate void MessageListener(Message message);
 
-        public event RawMessageListener IncomingRawMessageEvent;
+        public event MessageListener IncomingMessageEvent;
 
         public RemoteServer(ServerConfiguration configuration)
         {
             Configuration = configuration;
             Connection = new IrcConnection(configuration);
-            Connection.IncomingRawMessageEvent += x => IncomingRawMessageEvent(x);
+            Connection.IncomingRawMessageEvent += x => IncomingMessageEvent(Message.From(x));
         }
         public async Task ConnectAsync()
         {

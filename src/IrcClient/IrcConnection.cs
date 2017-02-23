@@ -60,7 +60,7 @@ namespace Irsee.IrcClient
                 }
             } catch (IOException e)
             {
-                // TODO: Log, at least
+                Console.Error.WriteLine($"Error while listing to IRC stream: {e.Message}", e);
                 return;
             }
         }
