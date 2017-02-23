@@ -18,9 +18,9 @@ namespace Irsee.IrcClient
 
         public RemoteServer(ServerConfiguration configuration)
         {
-            this.Configuration = configuration;
-            this.Connection = new IrcConnection(configuration);
-            this.Connection.IncomingRawMessageEvent += x => IncomingRawMessageEvent(x);
+            Configuration = configuration;
+            Connection = new IrcConnection(configuration);
+            Connection.IncomingRawMessageEvent += x => IncomingRawMessageEvent(x);
         }
         public async Task ConnectAsync()
         {
@@ -32,9 +32,14 @@ namespace Irsee.IrcClient
 
         private async Task Authenticate()
         {
-            await Connection.SendRawMessageAsync($"NICK {Configuration.User.Nickname}");
-            await Connection.SendRawMessageAsync($"USER {Configuration.User.Username} hostname servername {Configuration.User.Realname}");
-            await Connection.SendRawMessageAsync($"NICK {Configuration.User.Nickname}");
+            if (Configuration.Password != null)
+            {
+                await SendMessageAsync(new Message(Command.PASS, Configuration.Password));
+            }
+            await SendMessageAsync(new Message(Command.NICK, Configuration.User.Nickname));
+            await SendMessageAsync(new Message(Command.USER, Configuration.User.Username,
+                "hostname", "servername", Configuration.User.Realname));
+            await SendMessageAsync(new Message(Command.NICK, Configuration.User.Nickname));
         }
 
         public async Task SendMessageAsync(IMessage message)

@@ -9,14 +9,18 @@ namespace Irsee.IrcClient
     {
         public User User { get; private set; }
 
-        public ServerConfiguration(User user, string hostname, ushort port = 6667)
-        {
-            this.User = user;
-            this.Hostname = hostname;
-            this.Port = port;
-        }
-
         public ushort Port { get; private set; }
         public string Hostname { get; private set; }
+
+        public string Password { get; private set; }
+
+        public ServerConfiguration(User user, string hostname, ushort port = 6667, string password = null)
+        {
+            User = user;
+            Hostname = hostname;
+            Port = port;
+            Password = password;
+        }
+
     }
 }
