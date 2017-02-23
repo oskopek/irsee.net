@@ -40,6 +40,16 @@ namespace Irsee.IrcClient
             await SendMessageAsync(new Message(Command.USER, Configuration.User.Username,
                 "hostname", "servername", Configuration.User.Realname));
             await SendMessageAsync(new Message(Command.NICK, Configuration.User.Nickname));
+            await NickServAuthenticate(); // TODO: Move this to an END_MOTD event handler
+        }
+
+        private async Task NickServAuthenticate()
+        {
+            if (Configuration.User.NickServPassword != null)
+            {
+                await SendMessageAsync(new Message(Command.PRIVMSG, "NickServ", "IDENTIFY",
+                    Configuration.User.NickServPassword));
+            }
         }
 
         public async Task SendMessageAsync(IMessage message)
