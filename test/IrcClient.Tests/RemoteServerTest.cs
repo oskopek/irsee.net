@@ -24,7 +24,7 @@ namespace Irsee.IrcClient
                 Thread.Sleep(1000);
             }
             freenode.Disconnect();
-            Assert.Contains("Test Message 123", rawMessages[rawMessages.Count - 1]);
+            Assert.True(rawMessages.Any(m => m.Contains("Test Message 123")));
         }
     }
 }
