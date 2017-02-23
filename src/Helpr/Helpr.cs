@@ -11,9 +11,9 @@ namespace Irsee.Helpr
         {
             List<String> rawMessages = new List<string>();
             Console.WriteLine("Hello World!");
-            var freenodeConfiguration = new ServerConfiguration("leguin.freenode.net");
             var helpr = new User("helpr-bot", "HelpR", "HelpR");
-            var freenode = new RemoteServer(helpr, freenodeConfiguration);
+            var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net");
+            var freenode = new RemoteServer(freenodeConfiguration);
             freenode.IncomingRawMessageEvent += x => rawMessages.Add(x);
             freenode.IncomingRawMessageEvent += x => Console.WriteLine(x);
             freenode.ConnectAsync().Wait();

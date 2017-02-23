@@ -12,15 +12,12 @@ namespace Irsee.IrcClient
 
         private IrcConnection Connection { get; }
 
-        public User User { get; }
-
         public delegate void RawMessageListener(string rawMessage);
 
         public event RawMessageListener IncomingRawMessageEvent;
 
-        public RemoteServer(User user, ServerConfiguration configuration)
+        public RemoteServer(ServerConfiguration configuration)
         {
-            this.User = user;
             this.Configuration = configuration;
             this.Connection = new IrcConnection(configuration);
             this.Connection.IncomingRawMessageEvent += x => IncomingRawMessageEvent(x);
@@ -35,14 +32,14 @@ namespace Irsee.IrcClient
 
         private async Task Authenticate()
         {
-            await Connection.SendRawMessageAsync($"NICK {User.Nickname}");
-            await Connection.SendRawMessageAsync($"USER {User.Username} hostname servername {User.Realname}");
-            await Connection.SendRawMessageAsync($"NICK {User.Nickname}");
+            await Connection.SendRawMessageAsync($"NICK {Configuration.User.Nickname}");
+            await Connection.SendRawMessageAsync($"USER {Configuration.User.Username} hostname servername {Configuration.User.Realname}");
+            await Connection.SendRawMessageAsync($"NICK {Configuration.User.Nickname}");
         }
 
         public async Task SendMessageAsync(IMessage message)
         {
-            await Connection.SendRawMessageAsync(message.ToRawMessage());
+            await Connection.SendRawMessageAsync(message.RawMessage);
         }
 
         public void SendMessage(IMessage message)

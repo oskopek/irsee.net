@@ -25,6 +25,7 @@ namespace Irsee.IrcClient
         {
             NetworkStream stream = await Connection.ConnectAsync();
             Writer = new StreamWriter(stream);
+            Writer.NewLine = "\r\n"; // CRLF, RFC 1459 sec 2.3
             Reader = new StreamReader(stream);
         }
 

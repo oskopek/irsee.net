@@ -12,9 +12,9 @@ namespace Irsee.IrcClient
         public void FreenodeConnectionTest()
         {
             List<string> rawMessages = new List<string>();
-            var freenodeConfiguration = new ServerConfiguration("leguin.freenode.net");
             var helpr = new User("helpr-bot", "HelpR", "HelpR");
-            var freenode = new RemoteServer(helpr, freenodeConfiguration);
+            var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net");
+            var freenode = new RemoteServer(freenodeConfiguration);
             freenode.IncomingRawMessageEvent += x => rawMessages.Add(x);
             freenode.ConnectAsync().Wait();
             Thread.Sleep(1000);

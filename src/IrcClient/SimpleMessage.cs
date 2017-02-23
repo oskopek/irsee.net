@@ -7,15 +7,11 @@ namespace Irsee.IrcClient
 {
     public class SimpleMessage : IMessage
     {
-        public string Message { get; }
+        public string RawMessage { get; }
         
         public SimpleMessage(string message)
         {
-            this.Message = message;
-        }
-        public string ToRawMessage()
-        {
-            return Message;
+            this.RawMessage = message;
         }
     }
 }

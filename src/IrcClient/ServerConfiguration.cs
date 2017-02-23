@@ -7,8 +7,11 @@ namespace Irsee.IrcClient
 {
     public class ServerConfiguration
     {
-        public ServerConfiguration(string hostname, ushort port = 6667)
+        public User User { get; private set; }
+
+        public ServerConfiguration(User user, string hostname, ushort port = 6667)
         {
+            this.User = user;
             this.Hostname = hostname;
             this.Port = port;
         }
