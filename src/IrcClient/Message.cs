@@ -9,8 +9,13 @@ namespace Irsee.IrcClient
     {
         public string RawMessage {
             get {
-                return (Prefix == null ? "" : ":" + Prefix + " ") + Command
-                    + Parameters.Aggregate("", (acc, x) => acc + " " + x);
+                string rawMessage = (Prefix == null ? "" : ":" + Prefix + " ") + Command
+                    + Parameters.Take(Parameters.Count-1).Aggregate("", (acc, x) => acc + " " + x);
+                if (Parameters.Count > 0)
+                {
+                    rawMessage += " :" + Parameters[Parameters.Count - 1];
+                }
+                return rawMessage;
             }
         }
         public string Prefix { get; }
@@ -57,7 +62,18 @@ namespace Irsee.IrcClient
             Command.TryParse(commandStr, true, out command);
             rawMessage = rawMessage.Substring(endCommand).TrimStart(' ');
 
+            int lastParamIndex = rawMessage.IndexOf(":");
+            string lastParam = null;
+            if (lastParamIndex >= 0)
+            {
+                lastParam = rawMessage.Substring(lastParamIndex + 1);
+                rawMessage = rawMessage.Substring(0, lastParamIndex).TrimEnd(' ');
+            }
             IList<string> parameters = new List<string>(rawMessage.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            if (lastParam != null)
+            {
+                parameters.Add(lastParam);
+            }
             return new Message(command, parameters, prefix);
         }
 
