@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="Irsee.IrcClient.MessageTest.FromEmptyTest" /><Add Test="Irsee.IrcClient.MessageTest.FromSimpleTest" /><Add Test="Irsee.IrcClient.MessageTest.FromComplexTest" /><Add Test="Irsee.IrcClient.MessageTest.FromReplyTest" /></Playlist>

@@ -12,10 +12,10 @@ namespace Irsee.IrcClient
         public void FreenodeConnectionTest()
         {
             List<string> rawMessages = new List<string>();
-            var freenodeConfiguration = new ServerConfiguration("leguin.freenode.net");
-            var helpr = new User("helpr-bot", "HelpR", "HelpR");
-            var freenode = new RemoteServer(helpr, freenodeConfiguration);
-            freenode.IncomingRawMessageEvent += x => rawMessages.Add(x);
+            var helpr = new User("helpr-bot", username: "HelpR", realname: "HelpR");
+            var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net");
+            var freenode = new RemoteServer(freenodeConfiguration);
+            freenode.IncomingMessageEvent += x => rawMessages.Add(x.RawMessage);
             freenode.ConnectAsync().Wait();
             Thread.Sleep(1000);
             freenode.SendMessageAsync(new SimpleMessage($"PRIVMSG {helpr.Nickname} :Test Message 123")).Wait();
@@ -24,7 +24,7 @@ namespace Irsee.IrcClient
                 Thread.Sleep(1000);
             }
             freenode.Disconnect();
-            Assert.Contains("Test Message 123", rawMessages[rawMessages.Count - 1]);
+            Assert.True(rawMessages.Any(m => m.Contains("Test Message 123")));
         }
     }
 }

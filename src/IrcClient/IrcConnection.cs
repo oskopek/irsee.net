@@ -25,6 +25,7 @@ namespace Irsee.IrcClient
         {
             NetworkStream stream = await Connection.ConnectAsync();
             Writer = new StreamWriter(stream);
+            Writer.NewLine = "\r\n"; // CRLF, RFC 1459 sec 2.3
             Reader = new StreamReader(stream);
         }
 
@@ -59,7 +60,7 @@ namespace Irsee.IrcClient
                 }
             } catch (IOException e)
             {
-                // TODO: Log, at least
+                Console.Error.WriteLine($"Error while listing to IRC stream: {e.Message}", e);
                 return;
             }
         }
