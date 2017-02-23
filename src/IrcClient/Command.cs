@@ -167,7 +167,7 @@ namespace Irsee.IrcClient
         ERR_USERSDONTMATCH = 502
     }
 
-    static class CommandMethods
+    public static class CommandMethods
     {
 
         private static IDictionary<int, string> reverse = new Dictionary<int, string>();
@@ -179,12 +179,31 @@ namespace Irsee.IrcClient
             }
         }
 
-        static bool IsReplyCode(this Command command)
+        public static string Show(this Command command)
+        {
+            string str;
+            if (!reverse.TryGetValue((int)command, out str))
+            {
+                throw new ArgumentException($"Unknown command {command}");
+            }
+            if (!command.IsCommand())
+            {
+                return ((int) command) + "";
+            }
+            return str;
+        }
+
+        public static bool IsCommand(this Command command)
+        {
+            return command < (Command)200 && reverse.ContainsKey((int)command);
+        }
+
+        public static bool IsReplyCode(this Command command)
         {
             return command > (Command)200 && !IsErrorCode(command) && reverse.ContainsKey((int) command);
         }
 
-        static bool IsErrorCode(this Command command)
+        public static bool IsErrorCode(this Command command)
         {
             return command >= (Command)400 && reverse.ContainsKey((int) command);
         }

@@ -9,7 +9,7 @@ namespace Irsee.IrcClient
     {
         public string RawMessage {
             get {
-                string rawMessage = (Prefix == null ? "" : ":" + Prefix + " ") + Command
+                string rawMessage = (Prefix == null ? "" : ":" + Prefix + " ") + Command.Show()
                     + Parameters.Take(Parameters.Count-1).Aggregate("", (acc, x) => acc + " " + x);
                 if (Parameters.Count > 0)
                 {
@@ -23,15 +23,26 @@ namespace Irsee.IrcClient
 
         public Command Command { get; }
 
-        public Message(Command Command, IList<string> Parameters, string Prefix = null)
+        private Message(Command command, IList<string> parameters, string prefix = null)
         {
-            this.Prefix = Prefix;
-            this.Command = Command;
-            if (Parameters == null)
+            Prefix = prefix;
+            Command = command;
+            if (parameters == null)
             {
                 throw new ArgumentException("Parameters cannot be null");
             }
-            this.Parameters = Parameters;
+            Parameters = parameters;
+        }
+
+        public Message(string prefix, Command command, params string[] parameters)
+            : this(command, new List<string>(parameters), prefix)
+        {
+            // intentionally empty
+        }
+
+        public Message(Command command, params string[] parameters) : this(null, command, parameters)
+        {
+            // intentionally empty
         }
 
         public static Message From(string rawMessage)
@@ -59,7 +70,7 @@ namespace Irsee.IrcClient
             }
             string commandStr = rawMessage.Substring(0, endCommand);
             Command command;
-            Command.TryParse(commandStr, true, out command);
+            Enum.TryParse(commandStr, true, out command);
             rawMessage = rawMessage.Substring(endCommand).TrimStart(' ');
 
             int lastParamIndex = rawMessage.IndexOf(":");
@@ -100,7 +111,8 @@ namespace Irsee.IrcClient
 
         public override int GetHashCode()
         {
-            return (Prefix ?? "").GetHashCode() + Command.GetHashCode() + (from p in Parameters select p.GetHashCode()).Sum();
+            int n = 1337;
+            return (Prefix ?? "").GetHashCode() + Command.GetHashCode() + (from p in Parameters select p.GetHashCode() % n).Sum();
         }
 
     }
