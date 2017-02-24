@@ -8,7 +8,7 @@ namespace Irsee.IrcClient
 {
     public class RemoteServerTest
     {
-		[Fact]
+		[Fact(Skip = "Too unreliable at the moment")]
         public void FreenodeConnectionTest()
         {
             List<string> rawMessages = new List<string>();
