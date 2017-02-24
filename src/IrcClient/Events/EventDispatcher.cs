@@ -72,6 +72,7 @@ namespace Irsee.IrcClient.Events
         {
             EventDispatcher dispatcher = new EventDispatcher();
             // TODO: Add default handlers
+            dispatcher.AddHandler(Command.CAP, new PongHandler().CapSaslHandler);
             dispatcher.AddHandler(Command.PING, new PongHandler().Delegate());
             // dispatcher.AddHandler(Command.PRIVMSG, new PongHandler().AutoResponder);
             return dispatcher;

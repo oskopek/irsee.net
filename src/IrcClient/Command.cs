@@ -47,6 +47,8 @@ namespace Irsee.IrcClient
         WALLOPS,
         USERHOST,
         ISON,
+        CAP, // http://ircv3.net/specs/core/capability-negotiation-3.1.html
+        AUTHENTICATE, // http://ircv3.net/specs/extensions/sasl-3.1.html
         RPL_TRACELINK = 200,
         RPL_TRACECONNECTING = 201,
         RPL_TRACEHANDSHAKE = 202,
