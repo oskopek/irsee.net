@@ -15,14 +15,17 @@ namespace Irsee.IrcClient
         public string Password { get; }
 
         public bool UseSSL { get; }
+        public bool IdentifyNickServ { get; }
 
-        public ServerConfiguration(User user, string hostname, ushort port = 6667, string password = null, bool useSSL = false)
+        public ServerConfiguration(User user, string hostname, ushort port = 6667, string password = null, bool useSSL = false,
+            bool identifyNickServ = false)
         {
             User = user;
             Hostname = hostname;
             Port = port;
             Password = password;
             UseSSL = useSSL;
+            IdentifyNickServ = identifyNickServ;
         }
 
     }

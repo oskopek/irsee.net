@@ -45,10 +45,10 @@ namespace Irsee.IrcClient
 
         private async Task NickServAuthenticate()
         {
-            if (Configuration.User.NickServPassword != null)
+            if (Configuration.IdentifyNickServ && Configuration.User.NickServPassword != null)
             {
-                await SendMessageAsync(new Message(Command.PRIVMSG, "NickServ", "IDENTIFY",
-                    Configuration.User.NickServPassword));
+                await SendMessageAsync(new Message(Command.PRIVMSG, "NickServ",
+                    $"IDENTIFY {Configuration.User.NickServUsername} {Configuration.User.NickServPassword}"));
             }
         }
 

@@ -8,8 +8,8 @@ namespace Irsee.IrcClient
         public string NickServUsername { get; set; }
         public string NickServPassword { get; set; }
 
-        public User(string nickname, string nickServUsername = null,
-            string nickServPassword = null, string username = null, string realname = null)  {
+        public User(string nickname, string username = null, string realname = null,
+            string nickServUsername = null, string nickServPassword = null)  {
             if (username == null) {
                 username = nickname;
             }

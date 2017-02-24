@@ -10,7 +10,7 @@ namespace Irsee.Helpr
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var helpr = new User("helpr-bot", "HelpR", "HelpR");
+            var helpr = new User("helpr-bot", "HelpR", "HelpR", nickServUsername: "helpr");
             var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net", port: 6697, useSSL: true);
             var freenode = new RemoteServer(freenodeConfiguration);
             var client = new IrcClient.IrcClient(freenode);
