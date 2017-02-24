@@ -11,7 +11,7 @@ namespace Irsee.Helpr
         {
             Console.WriteLine("Hello World!");
             var helpr = new User("helpr-bot", "HelpR", "HelpR");
-            var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net");
+            var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net", port: 6697, useSSL: true);
             var freenode = new RemoteServer(freenodeConfiguration);
             var client = new IrcClient.IrcClient(freenode);
             freenode.IncomingMessageEvent += x => Console.WriteLine(x.RawMessage);

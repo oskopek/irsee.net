@@ -5,6 +5,7 @@
     "debugType": "portable"
   },
   "dependencies": {
+    "System.Net.Security": "4.0.0",
     "System.Threading.Thread": "4.0.0"
   },
   "frameworks": {

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Net.Sockets;
+using System.Net.Security;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace Irsee.IrcClient
         private TcpConnection Connection { get; set; }
         private StreamWriter Writer { get; set; }
         private StreamReader Reader { get; set; }
+        private ServerConfiguration Configuration { get; }
 
         public delegate void RawMessageListener(string rawMessage);
 
@@ -18,12 +20,19 @@ namespace Irsee.IrcClient
 
         public IrcConnection(ServerConfiguration configuration)
         {
-            this.Connection = new TcpConnection(configuration);
+            Configuration = configuration;
+            Connection = new TcpConnection(configuration);
         }
 
         public async Task ConnectAsync()
         {
-            NetworkStream stream = await Connection.ConnectAsync();
+            Stream stream = await Connection.ConnectAsync();
+            if (Configuration.UseSSL)
+            {
+                SslStream secureStream = new SslStream(stream);
+                await secureStream.AuthenticateAsClientAsync(Configuration.Hostname);
+                stream = secureStream;
+            }
             Writer = new StreamWriter(stream);
             Writer.NewLine = "\r\n"; // CRLF, RFC 1459 sec 2.3
             Reader = new StreamReader(stream);

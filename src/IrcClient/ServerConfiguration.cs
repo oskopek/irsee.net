@@ -7,19 +7,22 @@ namespace Irsee.IrcClient
 {
     public class ServerConfiguration
     {
-        public User User { get; private set; }
+        public User User { get; }
 
-        public ushort Port { get; private set; }
-        public string Hostname { get; private set; }
+        public ushort Port { get; }
+        public string Hostname { get; }
 
-        public string Password { get; private set; }
+        public string Password { get; }
 
-        public ServerConfiguration(User user, string hostname, ushort port = 6667, string password = null)
+        public bool UseSSL { get; }
+
+        public ServerConfiguration(User user, string hostname, ushort port = 6667, string password = null, bool useSSL = false)
         {
             User = user;
             Hostname = hostname;
             Port = port;
             Password = password;
+            UseSSL = useSSL;
         }
 
     }
