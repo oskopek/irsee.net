@@ -43,6 +43,15 @@ namespace Irsee.IrcClient
             AssertDeepEquals(expected, msg, rawMessage);
         }
 
+        [Fact]
+        public void FromReplyUnrecognizedTest()
+        {
+            Message expected = new Message("hobana.freenode.net", (Command) 342, "oskopek2", "oskopek3", "Oh well");
+            string rawMessage = ":hobana.freenode.net 342 oskopek2 oskopek3 :Oh well";
+            Message msg = Message.From(rawMessage);
+            AssertDeepEquals(expected, msg, rawMessage);
+        }
+
         private void AssertDeepEquals(Message expected, Message msg, string rawMessage)
         {
             Assert.NotNull(msg);
