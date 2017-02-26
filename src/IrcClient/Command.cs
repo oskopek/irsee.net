@@ -122,6 +122,7 @@ namespace Irsee.IrcClient
         RPL_USERS = 393,
         RPL_ENDOFUSERS = 394,
         RPL_NOUSERS = 395,
+        // Errors:
         ERR_NOSUCHNICK = 401,
         ERR_NOSUCHSERVER = 402,
         ERR_NOSUCHCHANNEL = 403,
@@ -166,7 +167,17 @@ namespace Irsee.IrcClient
         ERR_NOOPERHOST = 491,
         ERR_NOSERVICEHOST = 492,
         ERR_UMODEUNKNOWNFLAG = 501,
-        ERR_USERSDONTMATCH = 502
+        ERR_USERSDONTMATCH = 502,
+        // SASL:
+        RPL_LOGGEDIN = 900, // 900 <nick> %s!%s@%s %s :You are now logged in as %s.
+        RPL_LOGGEDOUT = 901, // 901 <nick> %s!%s@%s :You are now logged out.
+        ERR_NICKLOCKED = 902, // 902 <nick> :You must use a nick assigned to you.
+        RPL_SASLSUCCESS = 903, // 903 <nick> :SASL authentication successful
+        ERR_SASLFAILED = 904, // 904 <nick> :SASL authentication failed
+        ERR_SASLTOOLONG = 905, // "905 <nick> :SASL message too long
+        ERR_SASLABORTED = 906, // "906 <nick> :SASL authentication aborted
+        ERR_SASLALREADY = 907, // "907 <nick> :You have already completed SASL authentication
+        RPL_SASLMECHS = 908 // "908 <nick> <list> :are available SASL mechanisms
     }
 
     public static class CommandMethods

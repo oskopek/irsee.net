@@ -19,7 +19,7 @@ namespace Irsee.IrcClient
         public bool IdentifyNickServ { get; }
 
         public ServerConfiguration(User user, string hostname, ushort port = 6667, string password = null, bool useSSL = false,
-            bool identifyNickServ = false, bool useSASL = true)
+            bool identifyNickServ = false, bool useSASL = false)
         {
             User = user;
             Hostname = hostname;

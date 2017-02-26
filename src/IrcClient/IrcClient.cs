@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Irsee.IrcClient.Events;
+using System.Threading.Tasks;
 
 namespace Irsee.IrcClient
 {
@@ -13,10 +14,10 @@ namespace Irsee.IrcClient
 
         public IrcClient(RemoteServer server) {
             Servers.Add(server);
-            server.IncomingMessageEvent += x => Dispatcher.Dispatch(this, x);
+            server.IncomingMessageEvent += x => Dispatcher.Dispatch(server, x);
         }
 
-        public async void ConnectAsync() {
+        public async Task ConnectAsync() {
             foreach (var server in Servers)
             {
                 await server.ConnectAsync();
