@@ -26,12 +26,17 @@ namespace Irsee.IrcClient
         {
             await Connection.ConnectAsync();
             new Task(() => Connection.Listen()).Start();
-            await Task.Delay(2000);
+            await Task.Delay(2000); // TODO: Is this needed?
             await Authenticate();
         }
 
         private async Task Authenticate()
         {
+            if (Configuration.UseSASL)
+            {
+                await SendMessageAsync(new Message(Command.CAP, "LS", "302"));
+                // the rest will get handled by the appropriate cap handler
+            }
             if (Configuration.Password != null)
             {
                 await SendMessageAsync(new Message(Command.PASS, Configuration.Password));
@@ -40,10 +45,13 @@ namespace Irsee.IrcClient
             await SendMessageAsync(new Message(Command.USER, Configuration.User.Username,
                 "hostname", "servername", Configuration.User.Realname));
             await SendMessageAsync(new Message(Command.NICK, Configuration.User.Nickname));
-            await NickServAuthenticate(); // TODO: Move this to an END_MOTD event handler
+            if (!Configuration.UseSASL)
+            {
+                await NickServAuthenticate(); // TODO: Move this to an END_MOTD event handler
+            }
         }
 
-        private async Task NickServAuthenticate()
+        internal async Task NickServAuthenticate()
         {
             if (Configuration.IdentifyNickServ && Configuration.User.NickServPassword != null)
             {

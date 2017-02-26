@@ -10,7 +10,8 @@
     "IrcClient": {
       "target": "project"
     },
-    "xunit.runner.console": "2.2.0"
+    "xunit.runner.console": "2.2.0",
+    "Xunit.SkippableFact": "1.2.14"
   },
   "testRunner": "xunit",
   "frameworks": {

@@ -15,10 +15,11 @@ namespace Irsee.IrcClient
         public string Password { get; }
 
         public bool UseSSL { get; }
+        public bool UseSASL { get; }
         public bool IdentifyNickServ { get; }
 
         public ServerConfiguration(User user, string hostname, ushort port = 6667, string password = null, bool useSSL = false,
-            bool identifyNickServ = false)
+            bool identifyNickServ = false, bool useSASL = false)
         {
             User = user;
             Hostname = hostname;
@@ -26,6 +27,14 @@ namespace Irsee.IrcClient
             Password = password;
             UseSSL = useSSL;
             IdentifyNickServ = identifyNickServ;
+
+            UseSASL = useSASL;
+            if (!identifyNickServ && UseSASL)
+            {
+                Console.Error.WriteLine("SASL cannot be enabled while IdentifyNickServ is disabled. Disabling SASL.");
+                UseSASL = false;
+            }
+
         }
 
     }

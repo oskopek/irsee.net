@@ -21,6 +21,20 @@ namespace Irsee.IrcClient
         public string Prefix { get; }
         public IList<string> Parameters { get; }
 
+        public string LastParameter {
+            get
+            {
+                if (Parameters.Count <= 0)
+                {
+                    return null;
+                } else
+                {
+                    return Parameters[Parameters.Count - 1];
+                }
+                
+            }
+        }
+
         public Command Command { get; }
 
         private Message(Command command, IList<string> parameters, string prefix = null)
