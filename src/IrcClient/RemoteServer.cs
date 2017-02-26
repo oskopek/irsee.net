@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
+using Irsee.IrcClient.Events;
 
 namespace Irsee.IrcClient
 {
@@ -12,16 +13,21 @@ namespace Irsee.IrcClient
 
         private IrcConnection Connection { get; }
 
-        public delegate void MessageListener(Message message);
+        public event ServerEventHandler<Message> IncomingMessageEvent;
 
-        public event MessageListener IncomingMessageEvent;
+        public bool Connected { get
+            {
+                return Connection.Connected;
+            }
+        }
 
         public RemoteServer(ServerConfiguration configuration)
         {
             Configuration = configuration;
             Connection = new IrcConnection(configuration);
-            Connection.IncomingRawMessageEvent += x => IncomingMessageEvent(Message.From(x));
+            Connection.IncomingRawMessageEvent += msg => IncomingMessageEvent?.Invoke(this, Message.Parse(msg));
         }
+
         public async Task ConnectAsync()
         {
             await Connection.ConnectAsync();
@@ -75,5 +81,7 @@ namespace Irsee.IrcClient
         {
             Dispose();
         }
+
+
     }
 }

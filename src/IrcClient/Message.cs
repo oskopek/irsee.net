@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Irsee.IrcClient
 {
-    public class Message : IMessage
+    public sealed class Message : EventArgs, IMessage
     {
         public string RawMessage {
             get {
@@ -59,7 +59,7 @@ namespace Irsee.IrcClient
             // intentionally empty
         }
 
-        public static Message From(string rawMessage)
+        public static Message Parse(string rawMessage)
         {
             if (rawMessage == null)
             {

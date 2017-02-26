@@ -9,9 +9,12 @@ namespace Irsee.IrcClient.Events
     {
         public Message Message { get; }
 
-        public MessageEventArgs(Message message)
+        public bool Sent { get; }
+
+        public MessageEventArgs(Message message, bool sent = false)
         {
             Message = message;
+            Sent = sent;
         }
 
     }

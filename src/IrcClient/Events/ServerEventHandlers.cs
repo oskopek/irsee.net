@@ -5,75 +5,70 @@ using System.Threading.Tasks;
 
 namespace Irsee.IrcClient.Events
 {
-    public class PongHandler
+    public sealed class ServerEventHandlers
     {
-        public static EventHandler<Message> PingAutoResponder
+        public static ServerEventHandler<Message> PingAutoResponder
         {
             get
             {
-                return async (obj, e) =>
+                return async (server, e) =>
                 {
-                    var server = obj as RemoteServer;
                     await server.SendMessageAsync(new Message(Command.PONG, e.Parameters[0]));
                 };
             }
         }
 
-        public static EventHandler<Message> AutoResponder
+        public static ServerEventHandler<Message> AutoResponder
         {
             get
             {
-                return async (obj, e) =>
+                return async (server, e) =>
                 {
-                    var server = obj as RemoteServer;
                     await server.SendMessageAsync(new Message(Command.PRIVMSG, e.Parameters[0], "Hello there!"));
                 };
             }
         }
 
-        private static async Task TryClassicNickServ(RemoteServer remote)
+        private static async Task TryClassicNickServ(RemoteServer server)
         {
             // try classic nickserv if SASL failed
             await Console.Error.WriteLineAsync("SASL failed, trying classic NickServ auth.");
-            await remote.NickServAuthenticate();
+            await server.NickServAuthenticate();
             return;
         }
 
-        public static EventHandler<Message> MOTDEndHandler
+        public static ServerEventHandler<Message> MOTDEndHandler
         {
             get
             {
-                return async (obj, e) =>
+                return async (server, e) =>
                 {
-                    var server = obj as RemoteServer;
                     if (!server.Configuration.UseSASL)
                     {
-                        await server.NickServAuthenticate();
+                        await TryClassicNickServ(server);
                     }
                 };
             }
         }
 
-        public static EventHandler<Message> UniqueNickErrorHandler
+        public static ServerEventHandler<Message> UniqueNickErrorHandler
         {
             get
             {
-                return async (obj, e) =>
+                return async (server, e) =>
                 {
-                    var server = obj as RemoteServer;
                     server.Configuration.User.Nickname += "-1";
                     await server.SendMessageAsync(new Message(Command.NICK, server.Configuration.User.Nickname));
                 };
             }
         }
 
-        public static EventHandler<Message> CapSaslHandler
+        public static ServerEventHandler<Message> CapSaslHandler
         {
             get
             {
-                return async (obj, e) =>
+                return async (server, e) =>
                 {
-                    var server = obj as RemoteServer;
                     if (e.Parameters.Count == 3 && e.Parameters[1] == "LS")
                     {
                         string[] available = e.LastParameter.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -119,20 +114,19 @@ namespace Irsee.IrcClient.Events
             }
         }
 
-        public static EventHandler<Message> AuthenticateSaslHandler
+        public static ServerEventHandler<Message> AuthenticateSaslHandler
         {
             get
             {
-                return async (obj, e) =>
+                return async (server, e) =>
                 {
-                    var remote = obj as RemoteServer;
                     if (e.Parameters.Count == 1 && e.Parameters[0] == "+")
                     {
                         IEnumerable<Message> authMessages = Base64AuthEncoder.Encode(
-                            $"{remote.Configuration.User.NickServUsername}\0{remote.Configuration.User.NickServUsername}\0{remote.Configuration.User.NickServPassword}");
+                            $"{server.Configuration.User.NickServUsername}\0{server.Configuration.User.NickServUsername}\0{server.Configuration.User.NickServPassword}");
                         foreach (var msg in authMessages)
                         {
-                            await remote.SendMessageAsync(msg);
+                            await server.SendMessageAsync(msg);
                         }
                         return;
                     }

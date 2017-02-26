@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Irsee.IrcClient.events
+namespace Irsee.IrcClient.Events
 {
-    public class ChannelEventArgs : EventArgs
+    public class ChannelEventArgs : EntityEventArgs
     {
-        public ChannelEventArgs()
+        public Channel Channel { get
+            {
+                return (Channel) Entity; // TODO: Get rid of this
+            } }
+        public ChannelEventArgs(Channel channel, string reason = null) : base(channel, reason)
         {
-                
+            // intentionally empty
         }
     }
 }

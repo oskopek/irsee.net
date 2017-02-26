@@ -214,12 +214,12 @@ namespace Irsee.IrcClient
 
         public static bool IsReplyCode(this Command command)
         {
-            return command > (Command)200 && !IsErrorCode(command) && reverse.ContainsKey((int) command);
+            return reverse.ContainsKey((int)command) && reverse[(int)command].StartsWith("RPL");
         }
 
         public static bool IsErrorCode(this Command command)
         {
-            return command >= (Command)400 && reverse.ContainsKey((int) command);
+            return reverse.ContainsKey((int) command) && reverse[(int) command].StartsWith("ERR");
         }
     }
 }

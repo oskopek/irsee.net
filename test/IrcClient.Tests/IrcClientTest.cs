@@ -18,21 +18,21 @@ namespace Irsee.IrcClient
         [SkippableFact]
         public void FreenodeConnectionWithNickServ()
         {
-            //Skip.IfNot(ENABLEDIT, reason: "Integration tests not enabled");
+            Skip.IfNot(ENABLEDIT, reason: "Integration tests not enabled");
             Skip.If(PASSWORD == null, reason: "NickServ password wasn't found.");
             List<string> rawMessages = new List<string>();
             var helpr = new User("helpr-bot", username: "HelpR", realname: "HelpR", nickServUsername: "helpr", nickServPassword: PASSWORD);
             var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net", port: 6697, useSSL: true, identifyNickServ: true);
             var freenode = new RemoteServer(freenodeConfiguration);
             var client = new IrcClient(freenode);
-            freenode.IncomingMessageEvent += x => {
+            freenode.IncomingMessageEvent += (_, x) => {
                 if (x.Command == Command.ERR_NICKNAMEINUSE)
                 {
-                    PongHandler.UniqueNickErrorHandler(freenode, x);
+                    ServerEventHandlers.UniqueNickErrorHandler(freenode, x);
                 }
             };
-            freenode.IncomingMessageEvent += x => rawMessages.Add(x.RawMessage);
-            client.ConnectAsync().Wait();
+            freenode.IncomingMessageEvent += (_, x) => rawMessages.Add(x.RawMessage);
+            client.ConnectAllAsync().Wait();
             Thread.Sleep(1000);
             freenode.SendMessageAsync(new SimpleMessage($"PRIVMSG {helpr.Nickname} :Test Message 123")).Wait();
             for (int i = 0; i < DURING_TIMEOUT; i++)
@@ -55,9 +55,14 @@ namespace Irsee.IrcClient
             var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net", port: 6697, useSSL: true, identifyNickServ: true, useSASL: true);
             var freenode = new RemoteServer(freenodeConfiguration);
             var client = new IrcClient(freenode);
-            client.Dispatcher.AddHandler(Command.ERR_NICKNAMEINUSE, PongHandler.UniqueNickErrorHandler);
-            freenode.IncomingMessageEvent += x => rawMessages.Add(x.RawMessage);
-            client.ConnectAsync().Wait();
+            freenode.IncomingMessageEvent += (_, x) => {
+                if (x.Command == Command.ERR_NICKNAMEINUSE)
+                {
+                    ServerEventHandlers.UniqueNickErrorHandler(freenode, x);
+                }
+            };
+            freenode.IncomingMessageEvent += (_, x) => rawMessages.Add(x.RawMessage);
+            client.ConnectAllAsync().Wait();
             Thread.Sleep(1000);
             freenode.SendMessageAsync(new SimpleMessage($"PRIVMSG {helpr.Nickname} :Test Message 123")).Wait();
             for (int i = 0; i < DURING_TIMEOUT; i++)

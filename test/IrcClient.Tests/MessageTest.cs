@@ -11,9 +11,9 @@ namespace Irsee.IrcClient
         [Fact]
         public void FromEmptyTest()
         {
-            Assert.Throws<ArgumentException>(() => Message.From(null));
-            Assert.Throws<ArgumentException>(() => Message.From(""));
-            Assert.Throws<ArgumentException>(() => Message.From(": "));
+            Assert.Throws<ArgumentException>(() => Message.Parse(null));
+            Assert.Throws<ArgumentException>(() => Message.Parse(""));
+            Assert.Throws<ArgumentException>(() => Message.Parse(": "));
         }
 
         [Fact]
@@ -21,7 +21,7 @@ namespace Irsee.IrcClient
         {
             Message expected = new Message("kornbluth.freenode.net", Command.PING, "12345312");
             string rawMessage = ":kornbluth.freenode.net PING :12345312";
-            Message msg = Message.From(rawMessage);
+            Message msg = Message.Parse(rawMessage);
             AssertDeepEquals(expected, msg, rawMessage);
         }
 
@@ -30,7 +30,7 @@ namespace Irsee.IrcClient
         {
             Message expected = new Message("kornbluth.freenode.net", Command.PRIVMSG, "irseebot3", "Test 123 123");
             string rawMessage = ":kornbluth.freenode.net PRIVMSG irseebot3 :Test 123 123";
-            Message msg = Message.From(rawMessage);
+            Message msg = Message.Parse(rawMessage);
             AssertDeepEquals(expected, msg, rawMessage);
         }
 
@@ -39,7 +39,7 @@ namespace Irsee.IrcClient
         {
             Message expected = new Message("hobana.freenode.net", Command.ERR_NOSUCHNICK, "oskopek2", "oskopek3", "No such nick / channel");
             string rawMessage = ":hobana.freenode.net 401 oskopek2 oskopek3 :No such nick / channel";
-            Message msg = Message.From(rawMessage);
+            Message msg = Message.Parse(rawMessage);
             AssertDeepEquals(expected, msg, rawMessage);
         }
 
@@ -48,7 +48,7 @@ namespace Irsee.IrcClient
         {
             Message expected = new Message("hobana.freenode.net", (Command) 342, "oskopek2", "oskopek3", "Oh well");
             string rawMessage = ":hobana.freenode.net 342 oskopek2 oskopek3 :Oh well";
-            Message msg = Message.From(rawMessage);
+            Message msg = Message.Parse(rawMessage);
             AssertDeepEquals(expected, msg, rawMessage);
         }
 

@@ -14,6 +14,12 @@ namespace Irsee.IrcClient
         private StreamReader Reader { get; set; }
         private ServerConfiguration Configuration { get; }
 
+        public bool Connected { get
+            {
+                return Connection.Connected;
+            }
+        }
+
         public delegate void RawMessageListener(string rawMessage);
 
         public event RawMessageListener IncomingRawMessageEvent;

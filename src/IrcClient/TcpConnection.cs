@@ -11,6 +11,12 @@ namespace Irsee.IrcClient
         private readonly ServerConfiguration configuration;
         private TcpClient client;
 
+        public bool Connected { get
+            {
+                return client.Connected;
+            }
+        }
+
         public TcpConnection(ServerConfiguration configuration)
         {
             this.configuration = configuration;

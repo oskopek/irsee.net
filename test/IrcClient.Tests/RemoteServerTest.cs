@@ -23,13 +23,13 @@ namespace Irsee.IrcClient
             var helpr = new User("helpr-bot", username: "HelpR", realname: "HelpR");
             var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net");
             var freenode = new RemoteServer(freenodeConfiguration);
-            freenode.IncomingMessageEvent += x => {
+            freenode.IncomingMessageEvent += (_, x) => {
                 if (x.Command == Command.ERR_NICKNAMEINUSE)
                 {
-                    PongHandler.UniqueNickErrorHandler(freenode, x);
+                    ServerEventHandlers.UniqueNickErrorHandler(freenode, x);
                 }
             };
-            freenode.IncomingMessageEvent += x => rawMessages.Add(x.RawMessage);
+            freenode.IncomingMessageEvent += (_, x) => rawMessages.Add(x.RawMessage);
             freenode.ConnectAsync().Wait();
             Thread.Sleep(1000);
             freenode.SendMessageAsync(new SimpleMessage($"PRIVMSG {helpr.Nickname} :Test Message 123")).Wait();
@@ -51,13 +51,13 @@ namespace Irsee.IrcClient
             var helpr = new User("helpr-bot", username: "HelpR", realname: "HelpR");
             var freenodeConfiguration = new ServerConfiguration(helpr, "leguin.freenode.net", port: 6697, useSSL: true);
             var freenode = new RemoteServer(freenodeConfiguration);
-            freenode.IncomingMessageEvent += x => {
+            freenode.IncomingMessageEvent += (_, x) => {
                 if (x.Command == Command.ERR_NICKNAMEINUSE)
                 {
-                    PongHandler.UniqueNickErrorHandler(freenode, x);
+                    ServerEventHandlers.UniqueNickErrorHandler(freenode, x);
                 }
             };
-            freenode.IncomingMessageEvent += x => rawMessages.Add(x.RawMessage);
+            freenode.IncomingMessageEvent += (_, x) => rawMessages.Add(x.RawMessage);
             freenode.ConnectAsync().Wait();
             Thread.Sleep(1000);
             freenode.SendMessageAsync(new SimpleMessage($"PRIVMSG {helpr.Nickname} :Test Message 123")).Wait();
