@@ -39,6 +39,21 @@ namespace Irsee.IrcClient.Events
             return;
         }
 
+        public static EventHandler<Message> MOTDEndHandler
+        {
+            get
+            {
+                return async (obj, e) =>
+                {
+                    var server = obj as RemoteServer;
+                    if (!server.Configuration.UseSASL)
+                    {
+                        await server.NickServAuthenticate();
+                    }
+                };
+            }
+        }
+
         public static EventHandler<Message> UniqueNickErrorHandler
         {
             get

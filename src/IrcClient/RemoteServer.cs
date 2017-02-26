@@ -45,10 +45,6 @@ namespace Irsee.IrcClient
             await SendMessageAsync(new Message(Command.USER, Configuration.User.Username,
                 "hostname", "servername", Configuration.User.Realname));
             await SendMessageAsync(new Message(Command.NICK, Configuration.User.Nickname));
-            if (!Configuration.UseSASL)
-            {
-                await NickServAuthenticate(); // TODO: Move this to an END_MOTD event handler
-            }
         }
 
         internal async Task NickServAuthenticate()

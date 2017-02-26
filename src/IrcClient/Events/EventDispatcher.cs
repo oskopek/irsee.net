@@ -76,6 +76,7 @@ namespace Irsee.IrcClient.Events
             dispatcher.AddHandler(Command.CAP, PongHandler.CapSaslHandler);
             dispatcher.AddHandler(Command.PING, PongHandler.PingAutoResponder);
             dispatcher.AddHandler(Command.AUTHENTICATE, PongHandler.AuthenticateSaslHandler);
+            dispatcher.AddHandler(Command.RPL_ENDOFMOTD, PongHandler.MOTDEndHandler);
             // dispatcher.AddHandler(Command.PRIVMSG, new PongHandler().AutoResponder);
             return dispatcher;
         }
