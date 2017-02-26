@@ -29,6 +29,13 @@ namespace Irsee.IrcClient
             await Task.WhenAll(from server in Servers select server.ConnectAsync());
         }
 
+        public void DisconnectAll()
+        {
+            foreach (var server in Servers) {
+                server.Disconnect();
+            }
+        }
+
         public event ServerEventHandler<MessageEventArgs> MessageEvent;
 
         private void HandleIncomingMessage(RemoteServer server, MessageEventArgs args)
